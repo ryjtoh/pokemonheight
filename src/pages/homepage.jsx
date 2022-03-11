@@ -5,13 +5,50 @@ import { fetchPokmemon } from '../services/retrievePokemon';
 
 export default function HomePage() {
 
-    const [pokemon, setPokemon] = React.useState();
+    const allgen = ["red", "blue", "green", "yellow", "firered", 
+                    "leafgreen", "gold", "silver", "crystal", 
+                    "heartgold", "soulsilver", "ruby", "sapphire", 
+                    "emerald", "omegaruby", "omegasapphire", "diamond", 
+                    "pearl", "platinum", "brilliantdiamond", "shiningpearl",
+                    "black", "white", "black2", "white2",
+                    "x", "y", "sun", "moon", "ultrasun", "ultramoon", "sword", "shield"]
+    const gen1 = ["red", "blue", "green", "yellow", "firered", "leafgreen"];
+    const gen2 = ["gold", "silver", "crystal", "heartgold", "soulsilver"];
+    const gen3 = ["ruby", "sapphire", "emerald", "omegaruby", "omegasapphire"];
+    const gen4 = ["diamond", "pearl", "platinum", "brilliantdiamond", "shiningpearl"];
+    const gen5 = ["black", "white", "black2", "white2"];
+    const gen6 = ["x", "y"];
+    const gen7 = ["sun", "moon", "ultrasun", "ultramoon"];
+    const gen8 = ["sword", "shield"]
+
     const [loading, setLoading] = React.useState(false);
     const [result, setResult] = React.useState(0);
     const [error, setError] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
+    const [gen, setGen] = React.useState(allgen);
+    const [locations, setLocations] = React.useState();
 
-    const retrievePokemon = async (query) => {
+    const retrievePokemon = async (query, num) => {
+        let gen = allgen;
+        if (num === 1) {
+            gen = gen1;
+        } else if (num === 2) {
+            gen = gen2;
+        } else if (num === 3) {
+            gen = gen3;
+        } else if (num === 4) {
+            gen = gen4;
+        } else if (num === 5) {
+            gen = gen5;
+        } else if (num === 6) {
+            gen = gen6;
+        } else if (num === 7) {
+            gen =  gen7;
+        } else if (num === 8) {
+            gen = gen8;
+        }
+        setGen(gen);
+
         if (!query) {
             setErrorMessage("Please Enter a Pokemon")
             return setError(true);
@@ -20,10 +57,17 @@ export default function HomePage() {
         setLoading(true);
         setTimeout(async () => {
             try {
+                console.log("hello")
                 const response = await fetchPokmemon(query);
                 const results = await response.json();
-                setPokemon(results);
-                setResult(results.length)
+                var list = [];
+                for (var i = 0; i < results.length; i++) {
+                    if (gen.includes(results[i].version_details[0].version.name)) {
+                        list.push(results[i].location_area.name);
+                    }
+                }
+                setResult(list.length);
+                setLocations(list);
                 setLoading(false);
             } catch {
                 setLoading(false);
@@ -32,7 +76,6 @@ export default function HomePage() {
             }
             
         }, 1000)
-        
     }
 
     const formatName = (name) => {
@@ -53,9 +96,9 @@ export default function HomePage() {
                 <h1>Loading...</h1>
             ): null}
             <h1>{result} results found</h1>
-            {!loading && pokemon ? (
-                pokemon.map((location) => (
-                    <h5>{formatName(location.location_area.name)}</h5>
+            {!loading && locations ? (
+                locations.map((location) => (
+                    <h5>{formatName(location)}</h5>
                 ))
             ): null}
         </div>
