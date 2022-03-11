@@ -25,7 +25,6 @@ export default function HomePage() {
     const [result, setResult] = React.useState(0);
     const [error, setError] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState("");
-    const [gen, setGen] = React.useState(allgen);
     const [locations, setLocations] = React.useState();
 
     const retrievePokemon = async (query, num) => {
@@ -47,7 +46,6 @@ export default function HomePage() {
         } else if (num === 8) {
             gen = gen8;
         }
-        setGen(gen);
 
         if (!query) {
             setErrorMessage("Please Enter a Pokemon")
@@ -95,7 +93,7 @@ export default function HomePage() {
             {loading ? (
                 <h1>Loading...</h1>
             ): null}
-            <h1>{result} results found</h1>
+            <p>{result} results found</p>
             {!loading && locations ? (
                 locations.map((location) => (
                     <h5>{formatName(location)}</h5>

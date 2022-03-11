@@ -1,7 +1,36 @@
 div {
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+i {
+    position: relative;
+    bottom: 2px;
 }
 
 input {
-    margin: 30px;
+    color: white;
+    background: white;
+    text-indent: 25px;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.searchbar {
+    border-radius: 60px;
+    background-color: #ff0000;
+    color: black;
+    border-color: black;
+    margin-bottom: 10px;
+}
+
+.filters {
+    border-radius: 60px;
+    background-color: #ff0000;
+    color: black;
+    border-color: black;
+    width: 100px;
+    font-family: 'Press Start 2P', cursive;
 }
