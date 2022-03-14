@@ -5,10 +5,14 @@ import { fetchPokmemon } from '../services/retrievePokemon';
 
 export default function HomePage() {
 
-    const allgen = ["red", "blue", "green", "yellow", "firered", 
-                    "leafgreen", "gold", "silver", "crystal", 
-                    "heartgold", "soulsilver", "ruby", "sapphire", 
-                    "emerald", "omegaruby", "omegasapphire", "diamond", 
+    // Games that are included in each generation.
+
+    // allgen contains all the game; for the case when use presses search and
+    // returns all locations.
+    const allgen = ["red", "blue", "green", "yellow", "firered",
+                    "leafgreen", "gold", "silver", "crystal",
+                    "heartgold", "soulsilver", "ruby", "sapphire",
+                    "emerald", "omegaruby", "omegasapphire", "diamond",
                     "pearl", "platinum", "brilliantdiamond", "shiningpearl",
                     "black", "white", "black2", "white2",
                     "x", "y", "sun", "moon", "ultrasun", "ultramoon", "sword", "shield"]
@@ -27,6 +31,7 @@ export default function HomePage() {
     const [errorMessage, setErrorMessage] = React.useState("");
     const [locations, setLocations] = React.useState();
 
+    // Set the generation for the filters based on the filter.
     const retrievePokemon = async (query, num) => {
         let gen = allgen;
         if (num === 1) {
@@ -47,6 +52,7 @@ export default function HomePage() {
             gen = gen8;
         }
 
+        // User does not enter anything into search bar.
         if (!query) {
             setErrorMessage("Please Enter a Pokemon")
             return setError(true);
@@ -55,10 +61,10 @@ export default function HomePage() {
         setLoading(true);
         setTimeout(async () => {
             try {
-                console.log("hello")
                 const response = await fetchPokmemon(query);
                 const results = await response.json();
                 var list = [];
+                // Filter the locations based on the game the location is from.
                 for (var i = 0; i < results.length; i++) {
                     if (gen.includes(results[i].version_details[0].version.name)) {
                         list.push(results[i].location_area.name);
@@ -72,10 +78,10 @@ export default function HomePage() {
                 setError(true);
                 setErrorMessage("Pokemon Not Found")
             }
-            
         }, 1000)
     }
 
+    // Format results to get rid of hyphens and capitalize words.
     const formatName = (name) => {
         const removeHyphen = name.toLowerCase().replace(/-/g, " ")
         const words = removeHyphen.split(" ");
@@ -84,7 +90,6 @@ export default function HomePage() {
         }
         return words.join(" ");
     }
-    
 
     return (
         <div>

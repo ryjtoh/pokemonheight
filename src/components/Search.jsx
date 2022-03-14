@@ -5,7 +5,7 @@ import './SearchStyles.css'
 export default function Search(props) {
 
   const [search, setSearch] = React.useState("");
-  
+
   return (
     <body>
       <div className="container">
@@ -20,11 +20,9 @@ export default function Search(props) {
           <button type="submit" onClick={() => {props.retrievePokemon(search, 5);}} className="filters">V</button>
           <button type="submit" onClick={() => {props.retrievePokemon(search, 6);}} className="filters">VI</button>
           <button type="submit" onClick={() => {props.retrievePokemon(search, 7);}} className="filters">VII</button>
-          <button type="submit" onClick={() => {props.retrievePokemon(search, 8);}} className="filters">VIII</button>    
+          <button type="submit" onClick={() => {props.retrievePokemon(search, 8);}} className="filters">VIII</button>
         </div>
       </div>
     </body>
-    
-    
   )
 }
