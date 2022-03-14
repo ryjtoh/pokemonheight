@@ -1,5 +1,5 @@
-What is the URL to your GitHub-Pages site?
-What API did you use and why?
+### Website URL
+https://ryjtoh.github.io/whereisthatpokemon/
 
 ### API of Choice
 I leveraged the PokeAPI in order to make GET requests to gather the locations within
@@ -8,10 +8,10 @@ that can search across games. I am familiar with the data in the PokeAPI, which 
 I chose to use this API.
 
 ### Other Uses
-The PokeAPI can also be used to gather stats of Pokemon that may not be referenced in the game, such as Natures and Growth Rates of Pokemon. The PokeAPI also includes a library of all the Pokemon, items, and moves that can be leveraged to create a real life "Pokedex," which acts as Pokemon dictionary in the games.
+The PokeAPI can also be used to gather stats of Pokemon that may not be referenced in the game, such as Natures and Growth Rates of Pokemon. The PokeAPI also includes a library of all the Pokemon, items, and moves that can be leveraged to create a real life "Pokedex," which acts as Pokemon dictionary in the games. Another use of the API is to gather overall statistics on Pokemon based on their in-game stats.
 
-Explain the considerations you needed to make for the website to be responsive & mobile-friendly.
-Because of the simplicity of the app, keeping all of the components of the centered sufficed in order to be mobile friendly.
+### Further Considerations
+One of the biggest considerations when creating this app was thinking about the breakpoint system. Keeping in mind the dimensions of a typical phone screen size a user would have these days (6.06 inches diagonal), I had to keep the buttons and search bar easily viewable and accessible to mobile-users. Although the placement of the buttons are different on the mobile view of the web app, they are still logically grouped together and accessible. The font size was adjusted based on the size of a mobile screen as well, being clear and viewable in both desktop and mobile view.
 
 How can you make your app accessible to people with disabilities such as blindness or colorblindness?
 ### Accessibility
