@@ -25,14 +25,20 @@ export default function HomePage() {
     const gen7 = ["sun", "moon", "ultrasun", "ultramoon"];
     const gen8 = ["sword", "shield"]
 
+    // Tracks timeframe in between button click and query retrieval
     const [loading, setLoading] = React.useState(false);
-    const [result, setResult] = React.useState(0);
+    // The numbers of results found for the query + filter.
+    const [numResults, setNumResults] = React.useState(0);
+    // Tracks whether the query was successful or not.
     const [error, setError] = React.useState(false);
+    // Error message to user.
     const [errorMessage, setErrorMessage] = React.useState("");
+    // The location list from the query + filter.
     const [locations, setLocations] = React.useState();
 
     // Set the generation for the filters based on the filter.
     const retrievePokemon = async (query, num) => {
+        // Set the generation based on filter user selected. 
         let gen = allgen;
         if (num === 1) {
             gen = gen1;
@@ -59,8 +65,10 @@ export default function HomePage() {
         }
         setError(false);
         setLoading(true);
+        // Load time set to 1000ms in between click and query.
         setTimeout(async () => {
             try {
+                // Query
                 const response = await fetchPokmemon(query);
                 const results = await response.json();
                 var list = [];
@@ -70,7 +78,7 @@ export default function HomePage() {
                         list.push(results[i].location_area.name);
                     }
                 }
-                setResult(list.length);
+                setNumResults(list.length);
                 setLocations(list);
                 setLoading(false);
             } catch {
@@ -98,7 +106,7 @@ export default function HomePage() {
             {loading ? (
                 <h1>Loading...</h1>
             ): null}
-            <p>{result} results found</p>
+            <p>{numResults} results found</p>
             {!loading && locations ? (
                 locations.map((location) => (
                     <h5>{formatName(location)}</h5>
