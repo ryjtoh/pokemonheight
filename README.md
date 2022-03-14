@@ -13,7 +13,7 @@ The PokeAPI can also be used to gather stats of Pokemon that may not be referenc
 ### Further Considerations
 One of the biggest considerations when creating this app was thinking about the breakpoint system. Keeping in mind the dimensions of a typical phone screen size a user would have these days (6.06 inches diagonal), I had to keep the buttons and search bar easily viewable and accessible to mobile-users. Although the placement of the buttons is different on the mobile view of the web app, they are still logically grouped together and accessible. The font size was adjusted based on the size of a mobile screen as well, being clear and viewable in both desktop and mobile view.
 
-### Accessibility
+### User Accessibility
 Because of the color scheme of the app may be non-optimal for color blind users, I would add a color blind toggle for different types of colorblindness to account for these users. I also made the buttons and font relatively big in order to increase visibility for user with visual diablities. I could also implement a toggle feature to change the font to be more readable, as the chosen font was selected to match the video game theme.
 
 ### Improvement/Expansion
